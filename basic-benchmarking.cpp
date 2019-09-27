@@ -33,28 +33,31 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	// Start timing
-	the_clock::time_point start = the_clock::now();
-
-	// Do something that takes some time
-	/*sleep_for(milliseconds(300));*/
-
-	float sum = 0;
-	for (int x = 0; x < WIDTH; ++x)
+	while (true)
 	{
-		for (int y = 0; y < HEIGHT; ++y)
+		// Start timing
+		the_clock::time_point start = the_clock::now();
+
+		// Do something that takes some time
+		/*sleep_for(milliseconds(300));*/
+
+		float sum = 0;
+		for (int x = 0; x < WIDTH; ++x)
 		{
-			sum += array[y][x];
+			for (int y = 0; y < HEIGHT; ++y)
+			{
+				sum += array[y][x];
+			}
 		}
+		cout << sum << endl;
+
+		// Stop timing
+		the_clock::time_point end = the_clock::now();
+
+		// Compute the difference between the two times in milliseconds
+		auto time_taken = duration_cast<milliseconds>(end - start).count();
+		cout << "It took " << time_taken << " ms.\n";
 	}
-	cout << sum << endl;
-
-	// Stop timing
-	the_clock::time_point end = the_clock::now();
-
-	// Compute the difference between the two times in milliseconds
-	auto time_taken = duration_cast<milliseconds>(end - start).count();
-	cout << "It took " << time_taken << " ms.\n";
 
 	return 0;
 }
